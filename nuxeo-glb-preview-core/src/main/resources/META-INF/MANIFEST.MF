@@ -1,0 +1,13 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Vendor: org.nuxeo.labs.glb
+Bundle-Version: 1.0.0
+Bundle-Name: nuxeo-glb-preview-core
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.nuxeo.labs.glb.nuxeo-glb-preview-core;singleton=true
+Nuxeo-Component: OSGI-INF/listener-contrib.xml,
+ OSGI-INF/bulk-action-contrib.xml,
+ OSGI-INF/commandline-contrib.xml,
+ OSGI-INF/converter-contrib.xml,
+ OSGI-INF/mimetypes-contrib.xml

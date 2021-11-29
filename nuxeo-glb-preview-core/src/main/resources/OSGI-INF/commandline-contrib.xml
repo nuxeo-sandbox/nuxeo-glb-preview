@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.labs.glb.cli">
+
+    <require>org.nuxeo.ecm.platform.commandline.executor.service.defaultContrib</require>
+
+    <extension target="org.nuxeo.ecm.platform.commandline.executor.service.CommandLineExecutorComponent"
+               point="command">
+        <command name="glb2png" enabled="true">
+            <commandLine>screenshot-glb</commandLine>
+            <winCommand>screenshot-glb.cmd</winCommand>
+            <testParameterString>--version</testParameterString>
+            <parameterString>-i #{sourceFilePath} -o #{targetFilePath} -v -t 30000</parameterString>
+            <winParameterString>-i #{sourceFilePath} -o #{targetFilePath} -v -t 30000</winParameterString>
+            <installationDirective>You need to install node.js and https://github.com/Shopify/screenshot-glb</installationDirective>
+        </command>
+    </extension>
+</component>

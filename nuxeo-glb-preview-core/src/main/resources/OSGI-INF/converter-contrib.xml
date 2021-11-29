@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.labs.glb.converter">
+    <extension point="converter" target="org.nuxeo.ecm.core.convert.service.ConversionServiceImpl">
+        <converter class="org.nuxeo.ecm.platform.convert.plugins.CommandLineConverter" name="glb2png">
+            <sourceMimeType>model/gltf-binary</sourceMimeType>
+            <destinationMimeType>image/png</destinationMimeType>
+            <parameters>
+                <parameter name="CommandLineName">glb2png</parameter>
+            </parameters>
+        </converter>
+    </extension>
+</component>
