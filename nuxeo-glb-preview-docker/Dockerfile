@@ -23,7 +23,7 @@ USER 900
 
 # install node.js and screenshot-glb
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash && \
-    source ~/.bash_profile && nvm install --lts && npm install -g @shopify/screenshot-glb
+    source ~/.bash_profile && nvm install 16.13.0 && npm install -g @shopify/screenshot-glb
 
 # workaround to make the screenshot-glb command available in the default system PATH used by Java
 USER 0
