@@ -23,7 +23,7 @@ mvn clean install
 
 Install the package on your instance.
 
-This plugin relies on (screenhot-glb)[https://github.com/Shopify/screenshot-glb] which must be installed on your nuxeo server performing the conversion. Have a look at the repository (Dockerfile)[https://github.com/nuxeo-sandbox/nuxeo-glb-preview/blob/master/nuxeo-glb-preview-docker/Dockerfile] to find more details about the installation steps.
+This plugin relies on [screenhot-glb](https://github.com/Shopify/screenshot-glb) which must be installed on your nuxeo server performing the conversion. Have a look at the repository [Dockerfile](https://github.com/nuxeo-sandbox/nuxeo-glb-preview/blob/master/nuxeo-glb-preview-docker/Dockerfile) to find more details about the installation steps.
 
 # Support
 
