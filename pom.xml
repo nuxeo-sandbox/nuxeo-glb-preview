@@ -23,6 +23,7 @@
 
   <modules>
     <module>nuxeo-glb-preview-core</module>
+    <module>nuxeo-glb-preview-webui</module>
     <module>nuxeo-glb-preview-package</module>
     <module>nuxeo-glb-preview-docker</module>
   </modules>
@@ -40,6 +41,11 @@
       <dependency>
         <groupId>org.nuxeo.labs.glb</groupId>
         <artifactId>nuxeo-glb-preview-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.labs.glb</groupId>
+        <artifactId>nuxeo-glb-preview-webui</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
