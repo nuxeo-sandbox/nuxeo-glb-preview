@@ -7,7 +7,7 @@ A plugin that adds glb file preview capabilities to the nuxeo platform
 
 - GLB to PNG commandline based converter
 - A thumbnail factory tied to a GLB document facet
-- A webui element to view GLB files
+- A webui element to view GLB files that leverages [model-viewer](https://modelviewer.dev/)
 
 ## Webui
 
