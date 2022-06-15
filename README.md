@@ -3,13 +3,61 @@ nuxeo-glb-preview
 
 A plugin that adds glb file preview capabilities to the nuxeo platform
 
-## List of Features (details below)
+# List of Features (details below)
 
-- GLB to PNG converter
+- GLB to PNG commandline based converter
 - A thumbnail factory tied to a GLB document facet
+- A webui element to view GLB files
+
+## Webui
+
+below is an example of how to use the viewer in a document view layout 
+
+```html
+<!--
+`nuxeo-custom-type-view-layout`
+@group Nuxeo UI
+@element nuxeo-custom-type-view-layout
+-->
+<dom-module id="nuxeo-custom-type-view-layout">
+  <template>
+    <style include="nuxeo-styles">
+      .blob {
+        @apply --paper-card;
+      }
+
+      nuxeo-glb-viewer {
+        width: 100%;
+        height: calc(80vh - 100px);
+        background-color: white;
+      }
+    </style>
+    
+    <nuxeo-glb-viewer document="[[document]]"></nuxeo-glb-viewer>
+
+    <nuxeo-document-blob class="blob" document="[[document]]"></nuxeo-document-blob>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nuxeo-custom-type-view-layout',
+      behaviors: [Nuxeo.LayoutBehavior],
+      properties: {
+        /**
+         * @doctype custom-type
+         */
+        document: {
+          type: Object
+        }
+      }
+    });
+  </script>
+</dom-module>
+```
 
 
-## Build
+# Build
 
 Assuming maven is correctly setup on your computer:
 
@@ -19,11 +67,12 @@ cd nuxeo-glb-preview
 mvn clean install
 ```
 
-## Install
+# Install
 
 Install the package on your instance.
 
 This plugin relies on [screenhot-glb](https://github.com/Shopify/screenshot-glb) which must be installed on your nuxeo server performing the conversion. Have a look at the repository [Dockerfile](https://github.com/nuxeo-sandbox/nuxeo-glb-preview/blob/master/nuxeo-glb-preview-docker/Dockerfile) to find more details about the installation steps.
+
 
 # Support
 
