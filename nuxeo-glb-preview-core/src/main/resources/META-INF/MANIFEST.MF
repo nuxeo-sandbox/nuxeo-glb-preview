@@ -10,4 +10,6 @@ Nuxeo-Component: OSGI-INF/thumbnail-contrib.xml,
  OSGI-INF/commandline-contrib.xml,
  OSGI-INF/converter-contrib.xml,
  OSGI-INF/mimetypes-contrib.xml,
- OSGI-INF/type-contrib.xml
+ OSGI-INF/type-contrib.xml,
+ OSGI-INF/previewer-contrib.xml,
+ OSGI-INF/request-controller-contrib.xml

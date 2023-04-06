@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.labs.glb.previewer">
+    <extension point="MimeTypePreviewer" target="org.nuxeo.ecm.platform.preview.adapter.PreviewAdapterManagerComponent">
+        <previewer class="org.nuxeo.labs.glb.previewer.GLBPreviewer">
+            <pattern>model/gltf-binary</pattern>
+        </previewer>
+    </extension>
+</component>

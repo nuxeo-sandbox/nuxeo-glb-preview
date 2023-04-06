@@ -14,4 +14,5 @@
             <installationDirective>You need to install node.js and https://github.com/Shopify/screenshot-glb</installationDirective>
         </command>
     </extension>
+
 </component>

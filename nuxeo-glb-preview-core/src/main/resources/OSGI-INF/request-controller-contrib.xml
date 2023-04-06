@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.labs.glb.controller">
+
+    <require>org.nuxeo.ecm.platform.web.common.requestcontroller.service.RequestControllerService.defaultContrib
+    </require>
+
+    <extension point="responseHeaders"
+               target="org.nuxeo.ecm.platform.web.common.requestcontroller.service.RequestControllerService">
+        <header name="X-UA-Compatible">IE=10; IE=11</header>
+        <header name="Cache-Control">no-cache</header>
+        <header name="X-Content-Type-Options">nosniff</header>
+        <header name="X-XSS-Protection">1; mode=block</header>
+        <header name="X-Frame-Options">SAMEORIGIN</header>
+        <header name="Referrer-Policy">strict-origin-when-cross-origin</header>
+        <!-- this is a permissive Content-Security-Policy, which should be overridden for more security -->
+        <header name="Content-Security-Policy">worker-src blob: *; img-src data: blob: *; default-src blob: *; script-src
+            'unsafe-inline' 'unsafe-eval' blob: data: *; style-src 'unsafe-inline' *; font-src data: *; frame-ancestors
+            'self';
+        </header>
+    </extension>
+</component>
