@@ -21,9 +21,10 @@
             }
         </style>
 
-        <model-viewer src="[[_getSource(document,xpath)]]" poster="[[_getThumbnail(document)]]"
+        <model-viewer src="[[_getSource(document,sourceUrl)]]" poster="[[_getThumbnail(document)]]"
                       alt="[[document.title]]" ar ar-modes="webxr scene-viewer quick-look"
-                      environment-image="neutral" shadow-intensity="0" shadow-softness="0" exposure="0.92" auto-rotate camera-controls>
+                      environment-image="neutral" shadow-intensity="0" shadow-softness="0" exposure="0.92" auto-rotate
+                      camera-controls>
         </model-viewer>
 
     </template>
@@ -37,9 +38,8 @@
                     type: Object
                 },
 
-                xpath: {
-                    type: String,
-                    value: "file:content"
+                sourceUrl: {
+                    type: String
                 },
 
                 thumbnailUrl: {
@@ -47,9 +47,23 @@
                 }
             },
 
-            _getSource: function (document, xpath) {
-                return document && xpath && document.properties[xpath] ?
-                    document.properties[xpath].data : undefined;
+            _getSource: function (document, sourceUrl) {
+                if (sourceUrl) {
+                    return sourceUrl
+                } else if (document) {
+                    if (document.facets.includes('GLB')) {
+                        let renditions = document.properties['glb:renditions'];
+                        if (renditions.length > 0) {
+                            return renditions[0].content.data;
+                        } else {
+                            return document.properties['file:content'] && document.properties['file:content'].data;
+                        }
+                    } else {
+                        return undefined;
+                    }
+                } else {
+                    return undefined;
+                }
             },
 
             _getThumbnail: function (document, thumbnailUrl) {

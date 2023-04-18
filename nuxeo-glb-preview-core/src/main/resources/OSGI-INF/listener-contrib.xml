@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.labs.glb.listener">
+
+    <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+        <listener name="GLBChangedListener" class="org.nuxeo.labs.glb.listener.GLBChangedListener">
+            <event>documentCreated</event>
+            <event>beforeDocumentModification</event>
+        </listener>
+    </extension>
+
+</component>

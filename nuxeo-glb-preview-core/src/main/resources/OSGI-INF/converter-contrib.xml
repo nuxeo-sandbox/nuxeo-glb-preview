@@ -8,5 +8,31 @@
                 <parameter name="CommandLineName">glb2png</parameter>
             </parameters>
         </converter>
+
+        <converter class="org.nuxeo.ecm.platform.convert.plugins.CommandLineConverter" name="glbPackage">
+            <sourceMimeType>model/gltf-binary</sourceMimeType>
+            <destinationMimeType>model/gltf-binary</destinationMimeType>
+            <parameters>
+                <parameter name="CommandLineName">glbPackage</parameter>
+            </parameters>
+        </converter>
+
+        <converter class="org.nuxeo.ecm.platform.convert.plugins.CommandLineConverter" name="glbDraco">
+            <sourceMimeType>model/gltf-binary</sourceMimeType>
+            <destinationMimeType>model/gltf-binary</destinationMimeType>
+            <parameters>
+                <parameter name="CommandLineName">glbDraco</parameter>
+            </parameters>
+        </converter>
+
+        <converter name="glbOptimizer">
+            <sourceMimeType>model/gltf-binary</sourceMimeType>
+            <destinationMimeType>model/gltf-binary</destinationMimeType>
+            <conversionSteps>
+                <subconverter>glbPackage</subconverter>
+                <subconverter>glbDraco</subconverter>
+            </conversionSteps>
+        </converter>
+
     </extension>
 </component>

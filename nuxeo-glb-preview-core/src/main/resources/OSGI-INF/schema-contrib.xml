@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.labs.glb.schema">
+
+    <require>org.nuxeo.ecm.core.CoreExtensions</require>
+
+    <extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+        <schema name="glb" src="schemas/glb.xsd" prefix="glb"/>
+    </extension>
+
+</component>

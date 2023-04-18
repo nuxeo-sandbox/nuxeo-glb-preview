@@ -35,7 +35,9 @@ public class GLBPreviewer implements MimeTypePreviewer {
     public List<Blob> getPreview(Blob blob, DocumentModel dm) throws PreviewException {
 
         DownloadService downloadService = Framework.getService(DownloadService.class);
+
         String blobUrl = downloadService.getFullDownloadUrl(dm, "file:content", blob, "/nuxeo/");
+
         String thumbnailUrl = downloadService.getFullDownloadUrl(dm, "thumb:thumbnail", blob, "/nuxeo/");
 
         String head =
