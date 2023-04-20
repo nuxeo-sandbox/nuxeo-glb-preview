@@ -1,0 +1,61 @@
+<dom-module id="nuxeo-glb-renditions">
+    <template>
+        <style include="iron-flex iron-flex-alignment">
+            :host {
+                display: block;
+            }
+
+            label {
+                opacity: .5;
+                min-width: 10em;
+                display: inline-block;
+            }
+
+            .item {
+                line-height: 1.5em;
+            }
+
+        </style>
+
+        <h3>[[label]]</h3>
+        <div>
+            <template is="dom-repeat" items="[[_getAdditionalFormats(document)]]" as="item">
+                <div class="layout horizontal center item">
+                    <label class="flex">[[item.name]]</label>
+                    <span class="flex">[[item.size]]</span>
+                    <span class="flex">[[item.format]]</span>
+                    <nuxeo-download-button document="[[document]]"
+                                           xpath="glb:renditions/[[index]]/content">
+                    </nuxeo-download-button>
+                </div>
+            </template>
+        </div>
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: 'nuxeo-glb-renditions',
+        behaviors: [Nuxeo.I18nBehavior, Nuxeo.LayoutBehavior],
+        properties: {
+            label: String,
+            document: Object,
+            additionalFormats: {
+                type: Object,
+                computed: '_getAdditionalFormats(document)'
+            }
+        },
+
+        _getAdditionalFormats: function (document) {
+            return (document && document.properties['glb:renditions']) ? document.properties['glb:renditions']
+                .map(view => {
+                    return {
+                        name: view.name,
+                        size: this.formatSize(view.content.length),
+                        format: 'GLB',
+                        data: view.content.data
+                    };
+                }) : [];
+        }
+    });
+</script>

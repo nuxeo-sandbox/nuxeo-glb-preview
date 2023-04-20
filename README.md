@@ -14,31 +14,43 @@ A plugin that adds glb file preview capabilities to the nuxeo platform
 below is an example of how to use the viewer in a document view layout 
 
 ```html
+<link rel="import" href="../../nuxeo-glb-preview/widgets/nuxeo-glb-viewer.html">
+<link rel="import" href="../../nuxeo-glb-preview/widgets/nuxeo-glb-renditions.html">
+
 <!--
 `nuxeo-custom-type-view-layout`
 @group Nuxeo UI
 @element nuxeo-custom-type-view-layout
 -->
 <dom-module id="nuxeo-custom-type-view-layout">
-  <template>
-    <style include="nuxeo-styles">
-      .blob {
-        @apply --paper-card;
-      }
+    <template>
+        <style include="nuxeo-styles">
+            .container {
+                @apply --paper-card;
+                padding: 0;
+                margin-bottom: 0;
+            }
 
-      nuxeo-glb-viewer {
-        width: 100%;
-        height: calc(80vh - 100px);
-        background-color: white;
-      }
-    </style>
+            nuxeo-glb-renditions, nuxeo-document-blob {
+                @apply --paper-card;
+            }
+
+            nuxeo-glb-viewer {
+                width: 100%;
+                height: calc(75vh - 100px);
+            }
+        </style>
+
+        <div class="container">
+            <nuxeo-glb-viewer document="[[document]]"></nuxeo-glb-viewer>
+        </div>
+
+        <nuxeo-document-blob document="[[document]]"></nuxeo-document-blob>
+
+        <nuxeo-glb-renditions document="[[document]]" label="Renditions"></nuxeo-glb-renditions>
+
+    </template>
     
-    <nuxeo-glb-viewer document="[[document]]"></nuxeo-glb-viewer>
-
-    <nuxeo-document-blob class="blob" document="[[document]]"></nuxeo-document-blob>
-
-  </template>
-
   <script>
     Polymer({
       is: 'nuxeo-custom-type-view-layout',
