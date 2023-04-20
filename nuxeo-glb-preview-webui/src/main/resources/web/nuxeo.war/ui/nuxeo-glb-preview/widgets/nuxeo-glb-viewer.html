@@ -18,13 +18,39 @@
             model-viewer {
                 width: 100%;
                 height: 100%;
+                background-color: var(--paper-card_-_background-color);
             }
+
+            #fullscreenAction {
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                right: 16px;
+                bottom: 16px;
+                background-repeat: no-repeat;
+                background-position: center center;
+                cursor: pointer;
+                z-index: 1;
+                border: none;
+                outline: none;
+            }
+
+            .fullscreen {
+                background-image: url(../../img/exit_fullscreen.svg)
+            }
+
+            .notfullscreen {
+                background-image: url(../../img/fullscreen.svg)
+            }
+
         </style>
 
-        <model-viewer src="[[_getSource(document,sourceUrl)]]" poster="[[_getThumbnail(document)]]"
+        <model-viewer id="viewer" src="[[_getSource(document,sourceUrl)]]" poster="[[_getThumbnail(document)]]"
                       alt="[[document.title]]" ar ar-modes="webxr scene-viewer quick-look"
-                      environment-image="neutral" shadow-intensity="0" shadow-softness="0" exposure="0.92" auto-rotate
-                      camera-controls>
+                      environment-image="neutral" shadow-intensity="0.5" shadow-softness="0.5" exposure="0.92" auto-rotate
+                      camera-controls
+                      on-fullscreenchange="_fullscreenChanged">
+            <div id="fullscreenAction" class="notfullscreen" on-tap="_changeFullscreen"></div>
         </model-viewer>
 
     </template>
@@ -73,6 +99,22 @@
                     return document.contextParameters.thumbnail.url;
                 } else {
                     return undefined;
+                }
+            },
+
+            _changeFullscreen: function (e) {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen().catch((err) => console.error(err));
+                } else {
+                    this.$.viewer.requestFullscreen().catch((err) => console.error(err));
+                }
+            },
+
+            _fullscreenChanged: function(e) {
+                if (document.fullscreenElement) {
+                    this.$.fullscreenAction.className = "fullscreen";
+                } else {
+                    this.$.fullscreenAction.className = "notfullscreen";
                 }
             }
 
