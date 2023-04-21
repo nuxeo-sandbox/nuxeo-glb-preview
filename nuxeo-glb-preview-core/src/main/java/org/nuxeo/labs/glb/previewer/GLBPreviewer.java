@@ -41,7 +41,7 @@ public class GLBPreviewer implements MimeTypePreviewer {
         String thumbnailUrl = downloadService.getFullDownloadUrl(dm, "thumb:thumbnail", blob, "/nuxeo/");
 
         String head =
-            "<script type=\"module\" src=\"https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js\"></script>\n" +
+            "<script type=\"module\" src=\"https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js\"></script>\n" +
             "<style>\n" +
             "html,body {\n" +
             "    height: 100%;\n" +
