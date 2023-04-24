@@ -40,8 +40,7 @@ import java.util.HashMap;
 
 import static org.nuxeo.ecm.core.api.CoreSession.ALLOW_VERSION_WRITE;
 import static org.nuxeo.ecm.core.api.versioning.VersioningService.DISABLE_AUTO_CHECKOUT;
-import static org.nuxeo.ecm.platform.thumbnail.ThumbnailConstants.THUMBNAIL_FACET;
-import static org.nuxeo.ecm.platform.thumbnail.ThumbnailConstants.THUMBNAIL_PROPERTY_NAME;
+import static org.nuxeo.labs.glb.listener.GLBChangedListener.DISABLE_GLB_CONVERSIONS_GENERATION_LISTENER;
 
 public class GLBConversionWork extends AbstractWork {
 
@@ -83,6 +82,7 @@ public class GLBConversionWork extends AbstractWork {
         if (doc.isVersion()) {
             doc.putContextData(ALLOW_VERSION_WRITE, Boolean.TRUE);
         }
+        doc.putContextData(DISABLE_GLB_CONVERSIONS_GENERATION_LISTENER, Boolean.TRUE);
         doc.putContextData(DISABLE_AUTO_CHECKOUT, Boolean.TRUE);
         session.saveDocument(doc);
 
