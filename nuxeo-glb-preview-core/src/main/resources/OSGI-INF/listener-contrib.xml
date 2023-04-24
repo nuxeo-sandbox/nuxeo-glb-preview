@@ -2,7 +2,7 @@
 <component name="org.nuxeo.labs.glb.listener">
 
     <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
-        <listener name="GLBChangedListener" class="org.nuxeo.labs.glb.listener.GLBChangedListener">
+        <listener name="GLBChangedListener" class="org.nuxeo.labs.glb.listener.GLBChangedListener" priority="100">
             <event>documentCreated</event>
             <event>beforeDocumentModification</event>
         </listener>
