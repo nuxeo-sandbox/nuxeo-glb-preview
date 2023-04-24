@@ -27,6 +27,7 @@ import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.api.thumbnail.ThumbnailAdapter;
+import org.nuxeo.ecm.core.work.api.WorkManager;
 import org.nuxeo.ecm.platform.test.PlatformFeature;
 import org.nuxeo.labs.glb.adapter.GLBModelAdapter;
 import org.nuxeo.labs.glb.adapter.GLBRendition;
@@ -40,6 +41,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
+import static org.nuxeo.labs.glb.worker.GLBConversionWork.CATEGORY;
 import static org.nuxeo.labs.glb.worker.GLBConversionWork.OPTIMIZED_RENDITION_NAME;
 
 @RunWith(FeaturesRunner.class)
@@ -54,7 +56,15 @@ public class TestGLBConversionWorker {
     protected TransactionalFeature transactionalFeature;
 
     @Inject
+    protected WorkManager workManager;
+
+    @Inject
     CoreSession session;
+
+    @Test
+    public void testWorkManager() {
+        Assert.assertEquals("GLB",workManager.getCategoryQueueId(CATEGORY));
+    }
 
     @Test
     public void testWorker() {
@@ -88,6 +98,9 @@ public class TestGLBConversionWorker {
         Assert.assertNotNull(thumbnail);
         Assert.assertTrue(thumbnail.getLength() > 0);
         Assert.assertEquals("image/png",thumbnail.getMimeType());
+
+        Assert.assertEquals(1,workManager.getMetrics("GLB").completed.intValue());
+        Assert.assertEquals(0,workManager.getMetrics("GLB").scheduled.intValue());
     }
 
 }

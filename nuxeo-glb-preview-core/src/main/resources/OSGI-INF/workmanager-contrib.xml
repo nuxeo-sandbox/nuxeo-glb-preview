@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.labs.glb.workmanager" version="1.0">
+
+    <extension target="org.nuxeo.ecm.core.work.service" point="queues">
+        <queue id="GLB">
+            <maxThreads>1</maxThreads>
+            <category>glbConversion</category>
+        </queue>
+    </extension>
+
+</component>

@@ -49,6 +49,7 @@ public class GLBConversionWork extends AbstractWork {
 
     private static final Logger log = LogManager.getLogger(GLBConversionWork.class);
     public static final String OPTIMIZED_RENDITION_NAME = "optimized";
+    public static final String CATEGORY = "glbConversion";
 
     protected static String computeIdPrefix(String repositoryName, String docId) {
         return repositoryName + ':' + docId + ":glbconversion:";
@@ -57,6 +58,11 @@ public class GLBConversionWork extends AbstractWork {
     public GLBConversionWork(String repositoryName, String docId) {
         super(computeIdPrefix(repositoryName, docId));
         setDocument(repositoryName, docId);
+    }
+
+    @Override
+    public String getCategory() {
+        return CATEGORY;
     }
 
     @Override
