@@ -22,24 +22,20 @@ package org.nuxeo.labs.glb.thumbnail;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
-import org.nuxeo.ecm.core.api.blobholder.BlobHolder;
-import org.nuxeo.ecm.core.api.blobholder.SimpleBlobHolder;
-import org.nuxeo.ecm.core.convert.api.ConversionService;
 import org.nuxeo.ecm.platform.thumbnail.factories.ThumbnailDocumentFactory;
-import org.nuxeo.runtime.api.Framework;
-
-import java.io.Serializable;
-import java.util.HashMap;
+import org.nuxeo.labs.glb.adapter.GLBModelAdapter;
 
 public class GLBThumbnailFactory extends ThumbnailDocumentFactory {
 
     @Override
+    public Blob getThumbnail(DocumentModel doc, CoreSession session) {
+        GLBModelAdapter adapter =doc.getAdapter(GLBModelAdapter.class);
+        Blob thumbnail = adapter.getThumbnail();
+        return thumbnail!= null ? thumbnail : super.getThumbnail(doc, session);
+    }
+
+    @Override
     public Blob computeThumbnail(DocumentModel documentModel, CoreSession coreSession) {
-        Blob glbBlob = (Blob) documentModel.getPropertyValue("file:content");
-        HashMap<String, Serializable> params = new HashMap<>();
-        params.put("targetFileName","thumbnail.png");
-        ConversionService cs = Framework.getService(ConversionService.class);
-        BlobHolder result = cs.convert("glb2png", new SimpleBlobHolder(glbBlob),params);
-        return result.getBlob();
+        return null;
     }
 }

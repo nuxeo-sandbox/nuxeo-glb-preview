@@ -26,6 +26,7 @@ import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
+import org.nuxeo.ecm.core.api.thumbnail.ThumbnailAdapter;
 import org.nuxeo.ecm.platform.test.PlatformFeature;
 import org.nuxeo.labs.glb.adapter.GLBModelAdapter;
 import org.nuxeo.labs.glb.adapter.GLBRendition;
@@ -43,7 +44,10 @@ import static org.nuxeo.labs.glb.worker.GLBConversionWork.OPTIMIZED_RENDITION_NA
 
 @RunWith(FeaturesRunner.class)
 @Features({PlatformFeature.class})
-@Deploy({"org.nuxeo.labs.glb.nuxeo-glb-preview-core"})
+@Deploy({
+        "org.nuxeo.labs.glb.nuxeo-glb-preview-core",
+        "org.nuxeo.ecm.platform.thumbnail"
+})
 public class TestGLBConversionWorker {
 
     @Inject
@@ -78,6 +82,12 @@ public class TestGLBConversionWorker {
         Blob optimized = rendition.getContent();
         Assert.assertTrue(optimized.getLength() > 0);
         Assert.assertEquals("model/gltf-binary",optimized.getMimeType());
+
+        ThumbnailAdapter thumbnailAdapter = doc.getAdapter(ThumbnailAdapter.class);
+        Blob thumbnail = thumbnailAdapter.getThumbnail(session);
+        Assert.assertNotNull(thumbnail);
+        Assert.assertTrue(thumbnail.getLength() > 0);
+        Assert.assertEquals("image/png",thumbnail.getMimeType());
     }
 
 }

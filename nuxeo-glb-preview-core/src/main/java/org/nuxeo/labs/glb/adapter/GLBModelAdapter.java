@@ -19,6 +19,7 @@
 
 package org.nuxeo.labs.glb.adapter;
 
+import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.DocumentModel;
 
 import java.io.Serializable;
@@ -29,6 +30,8 @@ import java.util.stream.Collectors;
 
 public class GLBModelAdapter {
 
+    public static final String GLB_RENDITIONS_PROP = "glb:renditions";
+    public static final String GLB_THUMBNAIL_PROP = "glb:thumbnail";
     protected DocumentModel doc;
 
     public GLBModelAdapter(DocumentModel doc) {
@@ -53,15 +56,25 @@ public class GLBModelAdapter {
     }
 
     public void clearRenditions() {
-        doc.setPropertyValue("glb:renditions", null);
+        doc.setPropertyValue(GLB_RENDITIONS_PROP, null);
+        doc.setPropertyValue(GLB_THUMBNAIL_PROP, null);
     }
 
+    public Blob getThumbnail() {
+        return (Blob) doc.getPropertyValue(GLB_THUMBNAIL_PROP);
+    }
+
+    public void setThumbnail(Blob blob) {
+        doc.setPropertyValue(GLB_THUMBNAIL_PROP, (Serializable) blob);
+    }
+
+
     protected List<Map<String, Serializable>> getStoredRenditions() {
-        return (List<Map<String, Serializable>>) doc.getPropertyValue("glb:renditions");
+        return (List<Map<String, Serializable>>) doc.getPropertyValue(GLB_RENDITIONS_PROP);
     }
 
     protected void setStoredRenditions(List<Map<String, Serializable>> values) {
-        doc.setPropertyValue("glb:renditions", (Serializable) values);
+        doc.setPropertyValue(GLB_RENDITIONS_PROP, (Serializable) values);
     }
 
 }

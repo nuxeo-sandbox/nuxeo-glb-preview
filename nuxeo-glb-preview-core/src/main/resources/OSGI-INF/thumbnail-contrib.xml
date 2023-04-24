@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <component name="org.nuxeo.labs.glb.thumbnail">
+
     <extension target="org.nuxeo.ecm.core.api.thumbnail.ThumbnailService"
                point="thumbnailFactory">
         <thumbnailFactory name="GLBThumbnailFactory"

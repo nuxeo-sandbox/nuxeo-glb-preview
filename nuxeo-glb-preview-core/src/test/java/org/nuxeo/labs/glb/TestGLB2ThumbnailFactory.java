@@ -54,10 +54,8 @@ public class TestGLB2ThumbnailFactory {
         DocumentModel doc = session.createDocumentModel(session.getRootDocument().getPathAsString(),"File","File");
         doc.addFacet("GLB");
         doc.setPropertyValue("file:content", (Serializable) blob);
-
         Blob thumbnailBlob = thumbnailService.computeThumbnail(doc,session);
-        Assert.assertNotNull(thumbnailBlob);
-        Assert.assertEquals("image/png",thumbnailBlob.getMimeType());
+        Assert.assertNull(thumbnailBlob);
     }
 
 }

@@ -6,6 +6,7 @@
   <xs:include schemaLocation="core-types.xsd"/>
 
   <xs:element name="renditions" type="nxs:renditions"/>
+  <xs:element name="thumbnail" type="nxs:content"/>
 
   <xs:complexType name="renditions">
     <xs:sequence>

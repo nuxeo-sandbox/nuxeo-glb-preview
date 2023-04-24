@@ -40,6 +40,8 @@ import java.util.HashMap;
 
 import static org.nuxeo.ecm.core.api.CoreSession.ALLOW_VERSION_WRITE;
 import static org.nuxeo.ecm.core.api.versioning.VersioningService.DISABLE_AUTO_CHECKOUT;
+import static org.nuxeo.ecm.platform.thumbnail.ThumbnailConstants.THUMBNAIL_FACET;
+import static org.nuxeo.ecm.platform.thumbnail.ThumbnailConstants.THUMBNAIL_PROPERTY_NAME;
 
 public class GLBConversionWork extends AbstractWork {
 
@@ -69,19 +71,22 @@ public class GLBConversionWork extends AbstractWork {
 
         // update previews
         setStatus("Updating previews");
-        boolean save = computePreviews(doc, glb);
+        computePreviews(doc, glb);
 
-        if (save) {
-            // save document
-            if (doc.isVersion()) {
-                doc.putContextData(ALLOW_VERSION_WRITE, Boolean.TRUE);
-            }
-            doc.putContextData(DISABLE_AUTO_CHECKOUT, Boolean.TRUE);
-            session.saveDocument(doc);
+        // save document
+        if (doc.isVersion()) {
+            doc.putContextData(ALLOW_VERSION_WRITE, Boolean.TRUE);
         }
+        doc.putContextData(DISABLE_AUTO_CHECKOUT, Boolean.TRUE);
+        session.saveDocument(doc);
 
         setStatus("Done");
         fireGLBConversionDoneEvent();
+    }
+
+    @Override
+    public int getRetryCount() {
+        return 2;
     }
 
     @Override
@@ -89,16 +94,22 @@ public class GLBConversionWork extends AbstractWork {
         return "GLB Conversions: " + getId();
     }
 
-    protected boolean computePreviews(DocumentModel doc, Blob blob) {
+    protected void computePreviews(DocumentModel doc, Blob blob) {
+        //compute optimized rendition
         HashMap<String, Serializable> params = new HashMap<>();
         params.put("targetFileName",blob.getFilename());
         ConversionService cs = Framework.getService(ConversionService.class);
-        BlobHolder result = cs.convert("glbOptimizer", new SimpleBlobHolder(blob),params);
-
-        GLBRendition rendition = new GLBRendition(OPTIMIZED_RENDITION_NAME,result.getBlob());
+        BlobHolder OptimizationResult = cs.convert("glbOptimizer", new SimpleBlobHolder(blob),params);
+        Blob optimizedBlob = OptimizationResult.getBlob();
+        GLBRendition rendition = new GLBRendition(OPTIMIZED_RENDITION_NAME,optimizedBlob);
         GLBModelAdapter adapter = doc.getAdapter(GLBModelAdapter.class);
         adapter.addRendition(rendition);
-        return true;
+
+        params.clear();
+        params.put("targetFileName","thumbnail.png");
+        BlobHolder thumbnailResult = cs.convert("glb2png", new SimpleBlobHolder(optimizedBlob),params);
+
+        adapter.setThumbnail(thumbnailResult.getBlob());
     }
 
     protected void fireGLBConversionDoneEvent() {
