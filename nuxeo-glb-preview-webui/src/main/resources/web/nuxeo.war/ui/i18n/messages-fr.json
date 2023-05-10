@@ -1,0 +1,9 @@
+{
+  "label.glb":"GLB",
+  "command.reply":"Répondre",
+  "label.action.annotation.new": "Nouvelle Annotation",
+  "label.comment.replied": "a répondu",
+  "label.annotation.load.failure": "Echec lors du chargement des annotations",
+  "label.action.save.annotation.": "Echec lors de la sauvergarde",
+  "label.action.delete.annotation.failure": "Echec lors de la suppression"
+}

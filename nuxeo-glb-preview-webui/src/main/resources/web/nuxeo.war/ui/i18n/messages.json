@@ -1,3 +1,9 @@
 {
-  "label.glb":"GLB"
+  "label.glb":"GLB",
+  "command.reply":"Reply",
+  "label.action.annotation.new": "New Annotation",
+  "label.comment.replied": "replied",
+  "label.annotation.load.failure": "Failed to Load Annotations",
+  "label.action.save.annotation.": "Failed to Save Annotation",
+  "label.action.delete.annotation.failure": "Failed to Delete Annotation"
 }
