@@ -345,6 +345,7 @@
 
             _reload: function(document) {
                 this.$.viewer.showPoster();
+                this.splice('annotations', 0, this.annotations.length);
                 this._loadAnnotations();
             },
 
