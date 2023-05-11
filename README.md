@@ -3,7 +3,7 @@ nuxeo-glb-preview
 
 A plugin that adds glb file preview capabilities to the nuxeo platform
 
-# List of Features (details below)
+# List of Features
 - A thumbnail factory tied to a GLB document facet and a GLB to PNG cli based converter using [screenshot-glb](https://github.com/Shopify/screenshot-glb)
 - An event listener, worker and cli based converter to generate GLB files optimized for web preview using [gltf-transform](https://gltf-transform.donmccurdy.com/cli.html)
 - A webui element to view GLB files that leverages [model-viewer](https://modelviewer.dev/)
