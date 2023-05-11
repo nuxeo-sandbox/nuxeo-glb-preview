@@ -346,6 +346,7 @@
             _reload: function(document) {
                 this.$.viewer.showPoster();
                 this.splice('annotations', 0, this.annotations.length);
+                this.hotspotCounter = 1;
                 this._loadAnnotations();
             },
 
@@ -528,7 +529,6 @@
             _loadAnnotations: function () {
                 let annotations;
 
-                this.hotspotCounter = 1;
                 this.$.nuxeo.request().then(request => {
                     return request.path(`id/${this.document.uid}/@annotation`).get({
                         queryParams: {
