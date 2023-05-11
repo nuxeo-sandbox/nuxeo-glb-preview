@@ -28,6 +28,8 @@
     <extension target="org.nuxeo.ecm.platform.types.TypeService" point="types">
         <type id="GLB">
             <label>GLB</label>
+            <icon>/img/3d.png</icon>
+            <bigIcon>/img/3d.png</bigIcon>
         </type>
     </extension>
 

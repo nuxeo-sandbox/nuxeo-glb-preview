@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <component name="org.nuxeo.labs.glb.mimetypes">
     <extension point="mimetype" target="org.nuxeo.ecm.platform.mimetype.service.MimetypeRegistryService">
-        <mimetype binary="true" iconPath="file_100.png" normalized="model/gltf-binary">
+        <mimetype binary="true" iconPath="glb.png" normalized="model/gltf-binary">
             <mimetypes>
                 <mimetype>model/gltf-binary</mimetype>
             </mimetypes>
