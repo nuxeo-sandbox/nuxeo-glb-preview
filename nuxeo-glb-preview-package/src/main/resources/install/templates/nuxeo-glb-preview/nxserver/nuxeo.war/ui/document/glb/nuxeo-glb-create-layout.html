@@ -10,6 +10,12 @@
 
     <nuxeo-input role="widget" value="{{document.properties.dc:description}}" label="Description" type="text" name="description"></nuxeo-input>
 
+    <nuxeo-dropzone role="widget"
+                    label="[[i18n('file.content')]]"
+                    name="content"
+                    value="{{document.properties.file:content}}">
+    </nuxeo-dropzone>
+
   </template>
 
   <script>
