@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="nuxeo-glb-preview-demo-template" version="1.0.0">
 
+    <require>org.nuxeo.ecm.core.CoreExtensions</require>
+
     <extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
         <doctype name="GLB" extends="File">
             <facet name="GLB"/>
