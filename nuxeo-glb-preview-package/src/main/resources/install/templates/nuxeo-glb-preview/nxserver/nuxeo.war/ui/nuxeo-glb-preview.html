@@ -1,0 +1,23 @@
+<link rel="import" href="elements/annotations-tab.html">
+<!-- Contribution of element 'nuxeo-page-item' for slot 'DOCUMENT_VIEWS_ITEMS' -->
+<nuxeo-slot-content name="glb-annotations" slot="DOCUMENT_VIEWS_ITEMS" order="11">
+    <template>
+        <nuxeo-filter document="[[document]]" type="GLB">
+            <template>
+                <nuxeo-page-item name="annotations" label="Annotations"></nuxeo-page-item>
+            </template>
+        </nuxeo-filter>
+    </template>
+</nuxeo-slot-content>
+<!-- Contribution of element 'annotations-tab' for slot 'DOCUMENT_VIEWS_PAGES' -->
+<nuxeo-slot-content name="glb-annotations" slot="DOCUMENT_VIEWS_PAGES">
+    <template>
+        <annotations-tab document="{{document}}" name="annotations"></annotations-tab>
+    </template>
+</nuxeo-slot-content>
+<!-- Contribution of element 'nuxeo-preview-button' for slot 'BLOB_ACTIONS' -->
+<nuxeo-slot-content name="previewBlobAction" slot="BLOB_ACTIONS" order="20" priority="1" disabled>
+    <template>
+        <nuxeo-preview-button document="[[document]]" xpath="[[xpath]]"></nuxeo-preview-button>
+    </template>
+</nuxeo-slot-content>

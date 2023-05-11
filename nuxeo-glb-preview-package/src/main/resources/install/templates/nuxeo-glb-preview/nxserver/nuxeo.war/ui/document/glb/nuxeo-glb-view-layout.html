@@ -1,0 +1,54 @@
+<link rel="import" href="../../nuxeo-glb-preview/widgets/nuxeo-glb-viewer.html">
+<link rel="import" href="../../nuxeo-glb-preview/widgets/nuxeo-glb-renditions.html">
+
+<!--
+`nuxeo-glb-view-layout`
+@group Nuxeo UI
+@element nuxeo-glb-view-layout
+-->
+<dom-module id="nuxeo-glb-view-layout">
+    <template>
+        <style include="nuxeo-styles">
+            .container {
+                @apply --paper-card;
+                padding: 0;
+                margin-bottom: 0;
+            }
+
+            nuxeo-glb-renditions, nuxeo-document-blob {
+                @apply --paper-card;
+            }
+
+            nuxeo-glb-viewer {
+                width: 100%;
+                height: calc(75vh - 100px);
+            }
+        </style>
+
+        <div class="container">
+            <nuxeo-glb-viewer document="[[document]]"></nuxeo-glb-viewer>
+        </div>
+
+        <nuxeo-document-blob document="[[document]]"></nuxeo-document-blob>
+
+        <nuxeo-glb-renditions document="[[document]]" label="Renditions"></nuxeo-glb-renditions>
+
+    </template>
+
+  <script>
+    Polymer({
+      is: 'nuxeo-glb-view-layout',
+      behaviors: [Nuxeo.LayoutBehavior],
+      properties: {
+
+        /**
+         * @doctype GLB
+         */
+        document: {
+          type: Object,
+        },
+
+      }
+    });
+  </script>
+</dom-module>

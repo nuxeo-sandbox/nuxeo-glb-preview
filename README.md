@@ -49,7 +49,7 @@ below is an example of how to use the viewer in a document view layout
 
         <nuxeo-glb-renditions document="[[document]]" label="Renditions"></nuxeo-glb-renditions>
 
-    </template>
+    </template>[README.md](README.md)
     
   <script>
     Polymer({
