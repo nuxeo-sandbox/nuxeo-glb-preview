@@ -1,0 +1,9 @@
+{
+  "label.glb": "GLB",
+  "command.reply": "返信",
+  "label.action.annotation.new": "新規注釈",
+  "label.comment.replied": "返信済み",
+  "label.annotation.load.failure": "注釈の読み込みに失敗しました",
+  "label.action.save.annotation.": "注釈の保存に失敗しました",
+  "label.action.delete.annotation.failure": "注釈の削除に失敗しました"
+}
