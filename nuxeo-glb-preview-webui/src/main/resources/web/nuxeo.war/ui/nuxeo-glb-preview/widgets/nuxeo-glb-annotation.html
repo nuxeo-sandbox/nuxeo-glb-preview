@@ -159,8 +159,8 @@
                           on-fullscreenchange="_fullscreenChanged">
                 <template is="dom-repeat" items="[[annotations]]">
                     <button slot="hotspot-[[item.number]]" class="hotspot" id="hotspot-[[item.number]]"
-                            data-position$="[[_formatCoordinates(item.position.position)]]"
-                            data-normal$="[[_formatCoordinates(item.position.normal)]]" hidden$="[[item.deleted]]"
+                            data-position$="[[_formatCoordinates(item.dimensions.position)]]"
+                            data-normal$="[[_formatCoordinates(item.dimensions.normal)]]" hidden$="[[item.deleted]]"
                             on-tap="_focusAnnotation">
                         [[item.number]]
                     </button>
