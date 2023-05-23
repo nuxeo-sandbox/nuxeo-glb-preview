@@ -420,12 +420,11 @@
                     console.log('click on the model');
                     return;
                 }
-                const {position, normal} = positionAndNormal;
 
                 this.push('annotations', {
                     number: this.hotspotCounter++,
                     editing: true,
-                    position: positionAndNormal,
+                    dimensions: positionAndNormal,
                     text: '',
                     author: this.user.id,
                     replies: []
@@ -543,7 +542,7 @@
                             text: entry.text,
                             uuid: entry.id,
                             author: entry.author,
-                            position: JSON.parse(entry.entity),
+                            dimensions: JSON.parse(entry.entity).dimensions,
                             payload: entry,
                             replies: []
                         }
@@ -611,7 +610,7 @@
                                 //author: this.user,
                                 text: annotation.text,
                                 origin: "3D_Annotations",
-                                entity: JSON.stringify(annotation.position)
+                                entity: JSON.stringify({ dimensions: annotation.dimensions })
                             }
                         });
                     } else {
