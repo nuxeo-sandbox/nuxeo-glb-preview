@@ -28,10 +28,8 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.api.thumbnail.ThumbnailAdapter;
 import org.nuxeo.ecm.core.work.api.WorkManager;
-import org.nuxeo.ecm.platform.test.PlatformFeature;
 import org.nuxeo.labs.glb.adapter.GLBModelAdapter;
 import org.nuxeo.labs.glb.adapter.GLBRendition;
-import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 import org.nuxeo.runtime.test.runner.TransactionalFeature;
@@ -40,16 +38,13 @@ import javax.inject.Inject;
 import java.io.File;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import static org.nuxeo.labs.glb.worker.GLBConversionWork.CATEGORY;
 import static org.nuxeo.labs.glb.worker.GLBConversionWork.OPTIMIZED_RENDITION_NAME;
 
 @RunWith(FeaturesRunner.class)
-@Features({PlatformFeature.class})
-@Deploy({
-        "org.nuxeo.labs.glb.nuxeo-glb-preview-core",
-        "org.nuxeo.ecm.platform.thumbnail"
-})
+@Features({TestFeature.class})
 public class TestGLBConversionWorker {
 
     @Inject
@@ -101,6 +96,10 @@ public class TestGLBConversionWorker {
 
         Assert.assertEquals(1,workManager.getMetrics("GLB").completed.intValue());
         Assert.assertEquals(0,workManager.getMetrics("GLB").scheduled.intValue());
+
+        Assert.assertTrue(doc.hasSchema("picture"));
+        List<Map<String,Serializable>> staticViews = (List<Map<String, Serializable>>) doc.getPropertyValue("picture:views");
+        Assert.assertEquals(7,staticViews.size());
     }
 
 }

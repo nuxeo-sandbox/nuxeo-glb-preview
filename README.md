@@ -15,6 +15,7 @@ below is an example of how to use the viewer in a document view layout
 ```html
 <link rel="import" href="../../nuxeo-glb-preview/widgets/nuxeo-glb-viewer.html">
 <link rel="import" href="../../nuxeo-glb-preview/widgets/nuxeo-glb-renditions.html">
+<link rel="import" href="../../nuxeo-glb-preview/widgets/nuxeo-glb-render-views.html">
 
 <!--
 `nuxeo-custom-type-view-layout`
@@ -30,7 +31,7 @@ below is an example of how to use the viewer in a document view layout
                 margin-bottom: 0;
             }
 
-            nuxeo-glb-renditions, nuxeo-document-blob {
+            nuxeo-glb-renditions, nuxeo-document-blob, nuxeo-glb-render-views {
                 @apply --paper-card;
             }
 
@@ -45,6 +46,8 @@ below is an example of how to use the viewer in a document view layout
         </div>
 
         <nuxeo-document-blob document="[[document]]"></nuxeo-document-blob>
+
+        <nuxeo-glb-render-views document="[[document]]"></nuxeo-glb-render-views>
 
         <nuxeo-glb-renditions document="[[document]]" label="Renditions"></nuxeo-glb-renditions>
 

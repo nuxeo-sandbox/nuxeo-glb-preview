@@ -1,0 +1,68 @@
+<!--
+`nuxeo-glb-render-views`
+@group Nuxeo UI
+@element nuxeo-glb-render-views
+-->
+<dom-module id="nuxeo-glb-render-views">
+    <template>
+        <style include="iron-flex iron-flex-alignment">
+            :host {
+                display: block;
+            }
+
+            .render-views {
+                @apply --layout-horizontal;
+                @apply --layout-wrap;
+                gap: 24px;
+            }
+
+            .render-views > .item {
+                @apply --layout-vertical;
+                @apply --layout-center;
+            }
+
+            .render-views > .item label {
+                color: #999;
+            }
+
+            .render-views > .item img {
+                width: 300px;
+                height: 300px;
+                object-fit: cover;
+            }
+        </style>
+
+        <h3>[[i18n('threeDViewLayout.renderViews.heading')]]</h3>
+        <template is="dom-if" if="[[_hasItems(document.properties.picture:views)]]">
+            <div class="render-views">
+                <template is="dom-repeat" items="[[document.properties.picture:views]]" as="renderView">
+                    <div class="item">
+                        <img src="[[renderView.content.data]]"/>
+                        <div>
+                            <label class="layout flex-2" id="label">[[_getRenderLabel(renderView.title)]]</label>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: 'nuxeo-glb-render-views',
+        behaviors: [Nuxeo.I18nBehavior, Nuxeo.LayoutBehavior],
+        properties: {
+            document: Object
+        },
+
+        _hasItems(list) {
+            return list.length > 0;
+        },
+
+        _getRenderLabel(title) {
+            return this.i18n(`label.3d.render.${title}`)
+        }
+    });
+</script>

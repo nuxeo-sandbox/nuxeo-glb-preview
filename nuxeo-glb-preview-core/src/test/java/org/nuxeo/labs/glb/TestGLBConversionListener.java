@@ -29,9 +29,7 @@ import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.event.EventService;
 import org.nuxeo.ecm.core.event.impl.EventListenerDescriptor;
 import org.nuxeo.ecm.core.work.api.WorkManager;
-import org.nuxeo.ecm.platform.test.PlatformFeature;
 import org.nuxeo.labs.glb.listener.GLBChangedListener;
-import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 import org.nuxeo.runtime.test.runner.TransactionalFeature;
@@ -46,10 +44,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(FeaturesRunner.class)
-@Features({PlatformFeature.class})
-@Deploy({
-        "org.nuxeo.labs.glb.nuxeo-glb-preview-core"
-})
+@Features({TestFeature.class})
 public class TestGLBConversionListener {
 
     @Inject

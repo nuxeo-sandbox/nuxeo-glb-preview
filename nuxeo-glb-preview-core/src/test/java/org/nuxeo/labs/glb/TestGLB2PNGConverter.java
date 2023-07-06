@@ -28,8 +28,6 @@ import org.nuxeo.ecm.core.api.blobholder.SimpleBlobHolder;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.convert.api.ConversionService;
 import org.nuxeo.ecm.platform.commandline.executor.api.CommandLineExecutorService;
-import org.nuxeo.ecm.platform.test.PlatformFeature;
-import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 
@@ -39,8 +37,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 @RunWith(FeaturesRunner.class)
-@Features({PlatformFeature.class})
-@Deploy({"org.nuxeo.labs.glb.nuxeo-glb-preview-core"})
+@Features({TestFeature.class})
 public class TestGLB2PNGConverter {
 
     @Inject
@@ -66,6 +63,9 @@ public class TestGLB2PNGConverter {
         BlobHolder bh = new SimpleBlobHolder(blob);
         HashMap<String, Serializable> params = new HashMap<>();
         params.put("targetFileName","output.png");
+        params.put("height", "480");
+        params.put("width","480");
+        params.put("environment","");
         BlobHolder conversionResult = conversionService.convert("glb2png",bh,params);
         Blob imageBlob = conversionResult.getBlob();
         Assert.assertNotNull(imageBlob);

@@ -32,7 +32,8 @@ public class GLBModelAdapter {
 
     public static final String GLB_RENDITIONS_PROP = "glb:renditions";
     public static final String GLB_THUMBNAIL_PROP = "glb:thumbnail";
-    protected DocumentModel doc;
+
+    protected final DocumentModel doc;
 
     public GLBModelAdapter(DocumentModel doc) {
         this.doc = doc;
@@ -67,7 +68,6 @@ public class GLBModelAdapter {
     public void setThumbnail(Blob blob) {
         doc.setPropertyValue(GLB_THUMBNAIL_PROP, (Serializable) blob);
     }
-
 
     protected List<Map<String, Serializable>> getStoredRenditions() {
         return (List<Map<String, Serializable>>) doc.getPropertyValue(GLB_RENDITIONS_PROP);

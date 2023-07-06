@@ -5,5 +5,12 @@
   "label.comment.replied": "a répondu",
   "label.annotation.load.failure": "Echec lors du chargement des annotations",
   "label.action.save.annotation.": "Echec lors de la sauvergarde",
-  "label.action.delete.annotation.failure": "Echec lors de la suppression"
+  "label.action.delete.annotation.failure": "Echec lors de la suppression",
+  "label.3d.render.front": "Devant",
+  "label.3d.render.back": "Derrière",
+  "label.3d.render.top": "Haut",
+  "label.3d.render.bottom": "Bas",
+  "label.3d.render.left": "Gauche",
+  "label.3d.render.right": "Droite",
+  "label.3d.render.isometric": "Isométrique"
 }

@@ -19,29 +19,16 @@
 
 package org.nuxeo.labs.glb;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.nuxeo.ecm.core.api.CoreSession;
-import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.platform.test.PlatformFeature;
+import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
-import org.nuxeo.runtime.test.runner.FeaturesRunner;
+import org.nuxeo.runtime.test.runner.RunnerFeature;
 
-import javax.inject.Inject;
-
-@RunWith(FeaturesRunner.class)
-@Features({TestFeature.class})
-public class TestGLBDataModel {
-
-    @Inject
-    CoreSession session;
-
-    @Test
-    public void testDataModel() {
-        DocumentModel doc = session.createDocumentModel(
-                session.getRootDocument().getPathAsString(),"File","File");
-        doc.addFacet("GLB");
-        Assert.assertTrue(doc.hasSchema("glb"));
-    }
-
-}
+@Features({ PlatformFeature.class })
+@Deploy({
+        "org.nuxeo.labs.glb.nuxeo-glb-preview-core",
+        "org.nuxeo.ecm.platform.thumbnail",
+        "org.nuxeo.ecm.platform.picture.core",
+        "org.nuxeo.ecm.platform.tag"
+})
+public class TestFeature implements RunnerFeature {}

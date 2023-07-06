@@ -5,5 +5,12 @@
   "label.comment.replied": "replied",
   "label.annotation.load.failure": "Failed to Load Annotations",
   "label.action.save.annotation.": "Failed to Save Annotation",
-  "label.action.delete.annotation.failure": "Failed to Delete Annotation"
+  "label.action.delete.annotation.failure": "Failed to Delete Annotation",
+  "label.3d.render.front": "Front",
+  "label.3d.render.back": "Back",
+  "label.3d.render.top": "Top",
+  "label.3d.render.bottom": "Bottom",
+  "label.3d.render.left": "Left",
+  "label.3d.render.right": "Right",
+  "label.3d.render.isometric": "Isometric"
 }

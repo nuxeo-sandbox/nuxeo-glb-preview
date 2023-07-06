@@ -9,8 +9,8 @@
             <commandLine>screenshot-glb</commandLine>
             <winCommand>screenshot-glb.cmd</winCommand>
             <testParameterString>--version</testParameterString>
-            <parameterString><![CDATA[-i #{sourceFilePath} -o #{targetFilePath} -v -t 60000 -m "environment-image=neutral&shadow-intensity=0&shadow-softness=0&exposure=0.92"]]></parameterString>
-            <winParameterString><![CDATA[-i #{sourceFilePath} -o #{targetFilePath} -v -t 60000 -m '"environment-image=neutral&shadow-intensity=0&shadow-softness=0&exposure=0.92"']]></winParameterString>
+            <parameterString><![CDATA[-i #{sourceFilePath} -o #{targetFilePath} -v -t 60000 -w #{width} -h #{height} -m "#{environment}"]]></parameterString>
+            <winParameterString><![CDATA[-i #{sourceFilePath} -o #{targetFilePath} -v -t 60000 -w #{width} -h #{height} -m "#{environment}"]]></winParameterString>
             <installationDirective>You need to install node.js and https://github.com/Shopify/screenshot-glb</installationDirective>
         </command>
     </extension>
