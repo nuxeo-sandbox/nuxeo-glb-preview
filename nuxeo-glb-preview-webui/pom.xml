@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.nuxeo.labs.glb</groupId>
         <artifactId>nuxeo-glb-preview-parent</artifactId>
-        <version>2021.7.0-SNAPSHOT</version>
+        <version>2021.8.0-SNAPSHOT</version>
     </parent>
     <artifactId>nuxeo-glb-preview-webui</artifactId>
     <name>Nuxeo GLB Preview Webui Elements</name>
