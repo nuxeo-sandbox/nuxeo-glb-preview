@@ -29,6 +29,7 @@ import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.api.thumbnail.ThumbnailAdapter;
 import org.nuxeo.ecm.core.work.api.WorkManager;
 import org.nuxeo.labs.glb.adapter.GLBModelAdapter;
+import org.nuxeo.labs.glb.adapter.GLBRenderView;
 import org.nuxeo.labs.glb.adapter.GLBRendition;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
@@ -97,9 +98,8 @@ public class TestGLBConversionWorker {
         Assert.assertEquals(1,workManager.getMetrics("GLB").completed.intValue());
         Assert.assertEquals(0,workManager.getMetrics("GLB").scheduled.intValue());
 
-        Assert.assertTrue(doc.hasSchema("picture"));
-        List<Map<String,Serializable>> staticViews = (List<Map<String, Serializable>>) doc.getPropertyValue("picture:views");
-        Assert.assertEquals(7,staticViews.size());
+        List<GLBRenderView> renderViews = adapter.getRenderViews();
+        Assert.assertEquals(7,renderViews.size());
     }
 
 }

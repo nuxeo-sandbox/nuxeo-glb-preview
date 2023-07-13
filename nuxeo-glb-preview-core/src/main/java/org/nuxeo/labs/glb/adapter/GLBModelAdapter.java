@@ -31,12 +31,19 @@ import java.util.stream.Collectors;
 public class GLBModelAdapter {
 
     public static final String GLB_RENDITIONS_PROP = "glb:renditions";
+    public static final String GLB_RENDER_VIEWS_PROP = "picture:views";
     public static final String GLB_THUMBNAIL_PROP = "glb:thumbnail";
 
     protected final DocumentModel doc;
 
     public GLBModelAdapter(DocumentModel doc) {
         this.doc = doc;
+    }
+
+    public void clear() {
+        doc.setPropertyValue(GLB_RENDITIONS_PROP, null);
+        doc.setPropertyValue(GLB_RENDER_VIEWS_PROP, null);
+        doc.setPropertyValue(GLB_THUMBNAIL_PROP, null);
     }
 
     public List<GLBRendition> getRenditions() {
@@ -51,14 +58,19 @@ public class GLBModelAdapter {
     }
 
     public void addRendition(GLBRendition rendition) {
-        List<Map<String, Serializable>> renditions = getStoredRenditions();
-        renditions.add(rendition.toMap());
-        setStoredRenditions(renditions);
+        List<GLBRendition> renditions = getRenditions();
+        //remove rendition if it already exists
+        renditions = renditions.stream().filter(item -> !(rendition.getName().equals(item.getName()))).collect(Collectors.toList());
+        renditions.add(rendition);
+        saveRenditions(renditions);
     }
 
-    public void clearRenditions() {
-        doc.setPropertyValue(GLB_RENDITIONS_PROP, null);
-        doc.setPropertyValue(GLB_THUMBNAIL_PROP, null);
+    public void removeRendition(String name) {
+        List<GLBRendition> renditions = getRenditions();
+        List<GLBRendition> filteredRenditions = renditions.stream().filter(rendition -> !(name.equals(rendition.getName()))).collect(Collectors.toList());
+        if(renditions.size() != filteredRenditions.size()) {
+            saveRenditions(filteredRenditions);
+        }
     }
 
     public Blob getThumbnail() {
@@ -69,12 +81,49 @@ public class GLBModelAdapter {
         doc.setPropertyValue(GLB_THUMBNAIL_PROP, (Serializable) blob);
     }
 
+    public List<GLBRenderView> getRenderViews() {
+        List<Map<String, Serializable>> renders = getStoredRenderViews();
+        return renders.stream().map(GLBRenderView::new).collect(Collectors.toList());
+    }
+
+    public GLBRenderView getRenderView(String name) {
+        List<Map<String, Serializable>> renders = getStoredRenderViews();
+        Optional<GLBRenderView> result =   renders.stream().map(GLBRenderView::new).filter(entry -> (entry.name != null && entry.name.equals(name))).findFirst();
+        return result.orElse(null);
+    }
+
+    public void addRenderView(GLBRenderView renderView) {
+        List<GLBRenderView> renderViews = getRenderViews();
+        //remove the view if it already exists
+        renderViews= renderViews.stream().filter(item -> !(renderView.getName().equals(item.getName()))).collect(Collectors.toList());
+        renderViews.add(renderView);
+        saveRenderViews(renderViews);
+    }
+
+    public void removeRenderView(String name) {
+        List<GLBRenderView> renderViews = getRenderViews();
+        List<GLBRenderView> filteredRenditions = renderViews.stream().filter(rendition -> !(name.equals(rendition.getName()))).collect(Collectors.toList());
+        if(renderViews.size() != filteredRenditions.size()) {
+            saveRenderViews(filteredRenditions);
+        }
+    }
+
     protected List<Map<String, Serializable>> getStoredRenditions() {
         return (List<Map<String, Serializable>>) doc.getPropertyValue(GLB_RENDITIONS_PROP);
     }
 
-    protected void setStoredRenditions(List<Map<String, Serializable>> values) {
-        doc.setPropertyValue(GLB_RENDITIONS_PROP, (Serializable) values);
+    public void saveRenditions(List<GLBRendition> renditions) {
+        List<Map<String, Serializable>> renditionsToStore =  renditions.stream().map(GLBRendition::toMap).collect(Collectors.toList());
+        doc.setPropertyValue(GLB_RENDITIONS_PROP, (Serializable) renditionsToStore);
+    }
+
+    protected List<Map<String, Serializable>> getStoredRenderViews() {
+        return (List<Map<String, Serializable>>) doc.getPropertyValue(GLB_RENDER_VIEWS_PROP);
+    }
+
+    public void saveRenderViews(List<GLBRenderView> renderViews) {
+        List<Map<String, Serializable>> rendersToStore =  renderViews.stream().map(GLBRenderView::toMap).collect(Collectors.toList());
+        doc.setPropertyValue(GLB_RENDER_VIEWS_PROP, (Serializable) rendersToStore);
     }
 
 }

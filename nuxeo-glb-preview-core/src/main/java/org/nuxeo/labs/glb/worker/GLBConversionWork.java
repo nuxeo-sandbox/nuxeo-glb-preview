@@ -33,6 +33,7 @@ import org.nuxeo.ecm.core.event.EventService;
 import org.nuxeo.ecm.core.event.impl.DocumentEventContext;
 import org.nuxeo.ecm.core.work.AbstractWork;
 import org.nuxeo.labs.glb.adapter.GLBModelAdapter;
+import org.nuxeo.labs.glb.adapter.GLBRenderView;
 import org.nuxeo.labs.glb.adapter.GLBRendition;
 import org.nuxeo.runtime.api.Framework;
 
@@ -122,7 +123,7 @@ public class GLBConversionWork extends AbstractWork {
         doSaveAndCommit(doc, true);
 
         //compute render views
-        List<Map<String,Serializable>> views = new ArrayList<>();
+        List<GLBRenderView> views = new ArrayList<>();
 
         String[] viewNames = new String[]{"front","back","top","bottom","right","left","isometric"};
         String[] viewCoordinates = new String[]{
@@ -138,13 +139,11 @@ public class GLBConversionWork extends AbstractWork {
             String environment = String.format("%s&camera-orbit=%s", BASELINE_ENVIRONMENT,viewCoordinates[i]);
             Blob viewBlob = doScreenshot(optimizedBlob, "1080","1080", environment,
                     String.format("%s.png",viewNames[i]));
-            Map<String,Serializable> view = new HashMap<>();
-            view.put("title",viewNames[i]);
-            view.put("content", (Serializable) viewBlob);
+            GLBRenderView view = new GLBRenderView(viewNames[i], viewBlob);
             views.add(view);
         }
 
-        doc.setPropertyValue("picture:views", (Serializable) views);
+        adapter.saveRenderViews(views);
     }
 
     protected void fireGLBConversionDoneEvent() {

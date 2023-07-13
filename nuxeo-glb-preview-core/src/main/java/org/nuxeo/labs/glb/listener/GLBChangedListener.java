@@ -74,7 +74,7 @@ public class GLBChangedListener implements EventListener {
     protected void resetProperties(DocumentModel doc) {
         log.debug("Resetting GLB info of document {}", doc);
         GLBModelAdapter adapter = doc.getAdapter(GLBModelAdapter.class);
-        adapter.clearRenditions();
+        adapter.clear();
     }
 
     protected void scheduleAsyncProcessing(DocumentModel doc) {
