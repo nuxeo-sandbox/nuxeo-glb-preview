@@ -12,5 +12,6 @@
   "label.3d.render.bottom": "下",
   "label.3d.render.left": "左",
   "label.3d.render.right": "右",
-  "label.3d.render.isometric": "等距離"
+  "label.3d.render.isometric": "等距離",
+  "label.3d.rendition.optimized": "ウェブ用に最適化"
 }

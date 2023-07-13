@@ -17,11 +17,11 @@
 
         </style>
 
-        <h3>[[label]]</h3>
+        <h3>[[i18n('videoViewLayout.conversions')]]</h3>
         <div>
             <template is="dom-repeat" items="[[_getAdditionalFormats(document)]]" as="item">
                 <div class="layout horizontal center item">
-                    <label class="flex">[[item.name]]</label>
+                    <label class="flex">[[_getRenditionLabel(item.name)]]</label>
                     <span class="flex">[[item.size]]</span>
                     <span class="flex">[[item.format]]</span>
                     <nuxeo-download-button document="[[document]]"
@@ -56,6 +56,10 @@
                         data: view.content.data
                     };
                 }) : [];
+        },
+
+        _getRenditionLabel(title) {
+            return this.i18n(`label.3d.rendition.${title}`)
         }
     });
 </script>

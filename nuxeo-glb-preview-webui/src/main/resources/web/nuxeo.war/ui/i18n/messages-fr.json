@@ -12,5 +12,6 @@
   "label.3d.render.bottom": "Bas",
   "label.3d.render.left": "Gauche",
   "label.3d.render.right": "Droite",
-  "label.3d.render.isometric": "Isométrique"
+  "label.3d.render.isometric": "Isométrique",
+  "label.3d.rendition.optimized": "Optimisé pour le web"
 }
