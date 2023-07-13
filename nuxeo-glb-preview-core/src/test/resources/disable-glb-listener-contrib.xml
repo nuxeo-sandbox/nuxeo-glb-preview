@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.labs.glb.listener.disable">
+
+    <require>org.nuxeo.labs.glb.listener</require>
+
+    <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener" enabled="false">
+        <listener name="GLBChangedListener" class="org.nuxeo.labs.glb.listener.GLBChangedListener" priority="100">
+            <event>documentCreated</event>
+            <event>beforeDocumentModification</event>
+        </listener>
+    </extension>
+
+</component>

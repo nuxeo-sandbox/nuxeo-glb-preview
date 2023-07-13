@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.labs.glb.bulk" version="1.0.0">
+
+    <extension target="org.nuxeo.ecm.core.bulk" point="actions">
+        <action name="recomputeGlbPreview" inputStream="bulk/recomputeGlbPreview" bucketSize="2" batchSize="1"
+                validationClass="org.nuxeo.labs.glb.bulk.RecomputeGlbPreviewActionValidation" />
+    </extension>
+
+    <extension target="org.nuxeo.runtime.stream.service" point="streamProcessor">
+        <streamProcessor name="recomputeGlbPreviews" class="org.nuxeo.labs.glb.bulk.RecomputeGlbPreviewAction"
+                         defaultConcurrency="${nuxeo.bulk.action.glb.preview.defaultConcurrency:=2}"
+                         defaultPartitions="${nuxeo.bulk.action.glb.preview.defaultPartitions:=6}">
+            <policy name="default" maxRetries="${nuxeo.bulk.action.glb.preview.maxRetries:=1}" delay="5s" maxDelay="10s" continueOnFailure="true" />
+        </streamProcessor>
+    </extension>
+
+</component>
