@@ -8,6 +8,7 @@ A plugin that adds GLB file 3D model preview and annotation capabilities to the 
 - An event listener, worker and cli based converter to generate GLB files optimized for web preview using [gltf-transform](https://gltf-transform.donmccurdy.com/cli.html)
 - A webui element to view GLB files that leverages [model-viewer](https://modelviewer.dev/)
 - An 3D model annotation webui component which also leverages [model-viewer](https://modelviewer.dev/)
+- A bulk action to recompute previews of multiple documents using a query
 
 ## Webui
 below is an example of how to use the viewer in a document view layout 
@@ -122,6 +123,21 @@ below is an example of how to use the annotation web component in a tab
 
 A complete example is available [here](https://github.com/nuxeo-sandbox/nuxeo-glb-preview/tree/master/nuxeo-glb-preview-package/src/main/resources/install/templates/nuxeo-glb-preview/nxserver/nuxeo.war/ui)
 
+## Bulk recompute command
+
+```bash
+curl --location 'https://myserver/nuxeo/site/api/v1/automation/Bulk.RunAction' \
+--header 'Accept: application/json, application/json+nxentity' \
+--header 'Content-Type: application/json+nxrequest' \
+--header 'Authorization: Basic ...' \
+--data '{
+    "params": {
+        "action": "recomputeGlbPreview",
+        "query": "Select * From Document Where ecm:mixinType = '\''GLB'\''",
+        "parameters": "{\"xpath\": \"file:content\"}"
+    }
+}'
+```
 
 # Build
 Assuming maven is correctly setup on your computer:
