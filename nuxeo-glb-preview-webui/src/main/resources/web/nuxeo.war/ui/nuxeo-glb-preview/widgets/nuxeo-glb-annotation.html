@@ -152,7 +152,8 @@
         <nuxeo-connection id="nuxeo" user="{{user}}"></nuxeo-connection>
 
         <div id="page" class="page">
-            <model-viewer id="viewer" src="[[_getSource(document,sourceUrl)]]" poster="[[_getThumbnail(document,thumbnailUrl)]]"
+            <model-viewer id="viewer" src="[[_getSource(document,sourceUrl)]]"
+                          poster="[[_getThumbnail(document,thumbnailUrl)]]"
                           alt="[[document.title]]" ar ar-modes="webxr scene-viewer quick-look"
                           environment-image="neutral" shadow-intensity="0.5" shadow-softness="0.5" exposure="0.92"
                           camera-controls
@@ -194,9 +195,7 @@
                             <template is="dom-if" if="[[!item.editing]]">
                                 <div>
                                     <div>
-                    <span class="annotationText multiline"
-                          inner-h-t-m-l="[[item.text]]">
-                    </span>
+                                        <span class="annotationText multiline" inner-h-t-m-l="[[item.text]]"></span>
                                     </div>
                                     <div class="actions">
                                         <paper-icon-button id$="replyA-[[item.uuid]]" on-click="_replyToAnnotation"
@@ -250,9 +249,8 @@
                                         <template is="dom-if" if="[[!reply.editing]]">
                                             <div>
                                                 <div>
-                          <span class="annotationText multiline"
-                                inner-h-t-m-l="[[reply.text]]">
-                          </span>
+                                                  <span class="annotationText multiline" inner-h-t-m-l="[[reply.text]]">
+                                                  </span>
                                                 </div>
                                                 <div class="actions">
                                                     <template is="dom-if" if="[[_canEdit(reply)]]">
@@ -343,7 +341,7 @@
             },
 
 
-            _reload: function(document) {
+            _reload: function (document) {
                 this.$.viewer.showPoster();
                 this.splice('annotations', 0, this.annotations.length);
                 this.hotspotCounter = 1;
@@ -620,7 +618,7 @@
                                 //author: this.user,
                                 text: annotation.text,
                                 origin: "3D_Annotations",
-                                entity: JSON.stringify({ dimensions: annotation.dimensions })
+                                entity: JSON.stringify({dimensions: annotation.dimensions})
                             }
                         });
                     } else {
