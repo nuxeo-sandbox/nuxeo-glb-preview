@@ -96,7 +96,17 @@
                 if (thumbnailUrl) {
                     return thumbnailUrl
                 } else if (document) {
-                    return document.contextParameters.thumbnail.url;
+                    if (document.facets.includes('GLB')) {
+                        let renders = document.properties['picture:views'];
+                        if (renders && renders.length > 0) {
+                            return renders[0].content.data;
+                        } else {
+                            let thumbnail = document.properties['glb:thumbnail'];
+                            return thumbnail ? thumbnail.data : undefined;
+                        }
+                    } else {
+                        return document.contextParameters.thumbnail.url;
+                    }
                 } else {
                     return undefined;
                 }
