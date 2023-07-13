@@ -85,7 +85,7 @@ public class RecomputeGlbPreviewAction implements StreamProcessorTopology {
             WorkManager workManager = Framework.getService(WorkManager.class);
             DocumentModelList documents = loadDocuments(session, ids);
             for(DocumentModel doc : documents) {
-                Blob blob = (Blob) doc.getPropertyValue(PARAM_XPATH);
+                Blob blob = (Blob) doc.getPropertyValue(xpath);
                 if (blob == null) {
                     continue;
                 }
