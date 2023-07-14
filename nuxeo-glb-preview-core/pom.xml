@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.nuxeo.labs.glb</groupId>
         <artifactId>nuxeo-glb-preview-parent</artifactId>
-        <version>2021.8.0-SNAPSHOT</version>
+        <version>2021.9.0-SNAPSHOT</version>
     </parent>
     <artifactId>nuxeo-glb-preview-core</artifactId>
     <name>Nuxeo glb preview core</name>
