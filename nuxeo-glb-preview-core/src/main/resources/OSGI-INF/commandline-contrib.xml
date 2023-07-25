@@ -5,37 +5,50 @@
 
     <extension target="org.nuxeo.ecm.platform.commandline.executor.service.CommandLineExecutorComponent"
                point="command">
+
         <command name="glb2png" enabled="true">
             <commandLine>screenshot-glb</commandLine>
             <winCommand>screenshot-glb.cmd</winCommand>
             <testParameterString>--version</testParameterString>
-            <parameterString><![CDATA[-i #{sourceFilePath} -o #{targetFilePath} -v -t 60000 -w #{width} -h #{height} -m "#{environment}"]]></parameterString>
-            <winParameterString><![CDATA[-i #{sourceFilePath} -o #{targetFilePath} -v -t 60000 -w #{width} -h #{height} -m "#{environment}"]]></winParameterString>
-            <installationDirective>You need to install node.js and https://github.com/Shopify/screenshot-glb</installationDirective>
+            <parameterString>
+                <![CDATA[-i #{sourceFilePath} -o #{targetFilePath} -v -t 60000 -w #{width} -h #{height} -m "#{environment}"]]></parameterString>
+            <winParameterString>
+                <![CDATA[-i #{sourceFilePath} -o #{targetFilePath} -v -t 60000 -w #{width} -h #{height} -m "#{environment}"]]></winParameterString>
+            <installationDirective>You need to install node.js and https://github.com/Shopify/screenshot-glb
+            </installationDirective>
         </command>
-    </extension>
 
-    <extension target="org.nuxeo.ecm.platform.commandline.executor.service.CommandLineExecutorComponent"
-               point="command">
         <command name="glbPackage" enabled="true">
             <commandLine>gltf-transform</commandLine>
             <winCommand>gltf-transform.cmd</winCommand>
             <testParameterString>--version</testParameterString>
-            <parameterString><![CDATA[optimize #{sourceFilePath} #{targetFilePath} --simplify false --compress false --texture-compress webp]]></parameterString>
-            <winParameterString><![CDATA[optimize #{sourceFilePath} #{targetFilePath} --simplify false --compress false --texture-compress webp]]></winParameterString>
-            <installationDirective>You need to install node.js and https://gltf-transform.donmccurdy.com/cli.html</installationDirective>
+            <parameterString>
+                <![CDATA[optimize #{sourceFilePath} #{targetFilePath} --simplify false --compress false --texture-compress webp]]></parameterString>
+            <winParameterString>
+                <![CDATA[optimize #{sourceFilePath} #{targetFilePath} --simplify false --compress false --texture-compress webp]]></winParameterString>
+            <installationDirective>You need to install node.js and https://gltf-transform.donmccurdy.com/cli.html
+            </installationDirective>
         </command>
-    </extension>
 
-    <extension target="org.nuxeo.ecm.platform.commandline.executor.service.CommandLineExecutorComponent"
-               point="command">
         <command name="glbDraco" enabled="true">
             <commandLine>gltf-transform</commandLine>
             <winCommand>gltf-transform.cmd</winCommand>
             <testParameterString>--version</testParameterString>
-            <parameterString><![CDATA[draco #{sourceFilePath} #{targetFilePath} --quantize-color 16  --quantize-generic 16 --quantize-normal 16 --quantize-position 16 --quantize-texcoord 16 --decode-speed 10]]></parameterString>
-            <winParameterString><![CDATA[draco #{sourceFilePath} #{targetFilePath} --quantize-color 16  --quantize-generic 16 --quantize-normal 16 --quantize-position 16 --quantize-texcoord 16 --decode-speed 10]]></winParameterString>
-            <installationDirective>You need to install node.js and https://gltf-transform.donmccurdy.com/cli.html</installationDirective>
+            <parameterString>
+                <![CDATA[draco #{sourceFilePath} #{targetFilePath} --quantize-color 16  --quantize-generic 16 --quantize-normal 16 --quantize-position 16 --quantize-texcoord 16 --decode-speed 10]]></parameterString>
+            <winParameterString>
+                <![CDATA[draco #{sourceFilePath} #{targetFilePath} --quantize-color 16  --quantize-generic 16 --quantize-normal 16 --quantize-position 16 --quantize-texcoord 16 --decode-speed 10]]></winParameterString>
+            <installationDirective>You need to install node.js and https://gltf-transform.donmccurdy.com/cli.html
+            </installationDirective>
+        </command>
+
+        <command name="gltf2glb" enabled="true">
+            <commandLine>gltf-pipeline</commandLine>
+            <winCommand>gltf-pipeline.cmd</winCommand>
+            <testParameterString>-h</testParameterString>
+            <parameterString>-i #{sourceFilePath} -o #{targetFilePath}</parameterString>
+            <winParameterString>-i #{sourceFilePath} -o #{targetFilePath}</winParameterString>
+            <installationDirective>You need to install https://github.com/CesiumGS/gltf-pipeline</installationDirective>
         </command>
     </extension>
 

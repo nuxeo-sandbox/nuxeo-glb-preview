@@ -165,7 +165,7 @@ docker compose up -d
 # Install
 Install the package on your instance.
 
-This plugin relies on [screenhot-glb](https://github.com/Shopify/screenshot-glb) and [gltf-transform](https://gltf-transform.donmccurdy.com/cli.html) which must be installed on your nuxeo server. Have a look at the repository [Dockerfile](https://github.com/nuxeo-sandbox/nuxeo-glb-preview/blob/master/nuxeo-glb-preview-docker/Dockerfile) to find more details about the installation steps.
+This plugin relies on [screenhot-glb](https://github.com/Shopify/screenshot-glb), [gltf-pipeline](https://github.com/CesiumGS/gltf-pipeline) and [gltf-transform](https://gltf-transform.donmccurdy.com/cli.html) which must be installed on your nuxeo server. Have a look at the repository [Dockerfile](https://github.com/nuxeo-sandbox/nuxeo-glb-preview/blob/master/nuxeo-glb-preview-docker/Dockerfile) to find more details about the installation steps.
 
 In order to use the sample document type, the configuration template must be added to nuxeo.conf
 

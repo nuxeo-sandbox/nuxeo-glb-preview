@@ -34,5 +34,13 @@
             </conversionSteps>
         </converter>
 
+        <converter class="org.nuxeo.labs.glb.converter.GltfArchiveToGlbConverter" name="gltf2glb">
+            <sourceMimeType>application/zip</sourceMimeType>
+            <destinationMimeType>model/gltf-binary</destinationMimeType>
+            <parameters>
+                <parameter name="CommandLineName">gltf2glb</parameter>
+            </parameters>
+        </converter>
+
     </extension>
 </component>
