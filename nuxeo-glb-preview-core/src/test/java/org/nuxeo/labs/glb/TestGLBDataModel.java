@@ -27,7 +27,7 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @RunWith(FeaturesRunner.class)
 @Features({TestFeature.class})

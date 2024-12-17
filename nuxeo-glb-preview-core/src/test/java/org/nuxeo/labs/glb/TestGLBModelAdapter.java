@@ -30,7 +30,7 @@ import org.nuxeo.labs.glb.adapter.GLBRendition;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
