@@ -38,7 +38,12 @@ jobs:
             ]
 
       - name: Install OS dependencies
-        run: sudo apt-get -y install ffmpeg exiftool
+        run: sudo apt-get -y install alsa-lib at-spi2-atk libX11 libXcomposite libXcursor libXdamage libXext libXi libXtst libXScrnSaver libXrandr libXrandr atk pango gtk3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm install -g @shopify/screenshot-glb @gltf-transform/cli gltf-pipeline
 
       - name: Build with Maven
         run: mvn -B install --file pom.xml -DskipDocker=true
