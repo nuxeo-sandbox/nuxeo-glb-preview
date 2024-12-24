@@ -37,9 +37,6 @@ jobs:
               }
             ]
 
-      - name: Install OS dependencies
-        run: sudo apt-get -y update && sudo apt-get -y install libnss3
-
       - uses: actions/setup-node@v4
         with:
           node-version: 18
